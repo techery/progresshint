@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Widget.SeekBarHintBase" parent="android:Widget.Holo.SeekBar"/>
+    <style name="Widget.ProgressHintBase" parent="android:Widget.Holo.SeekBar"/>
 
-    <style name="Widget.SeekBarHint" parent="Widget.SeekBarHintBase">
-        <item name="popupLayout">@layout/seekbar_hint_popup</item>
+    <style name="Widget.ProgressHint" parent="Widget.ProgressHintBase">
+        <item name="popupLayout">@layout/progress_hint_popup</item>
         <item name="popupStyle">follow</item>
-        <item name="popupAnimationStyle">@style/SeekBarHintPopupAnimation</item>
+        <item name="popupAnimationStyle">@style/ProgressHintPopupAnimation</item>
         <item name="popupOffset">0dp</item>
         <item name="popupAlwaysShown">false</item>
         <item name="popupDraggable">true</item>
     </style>
-    <style name="SeekBarHintPopupAnimation">
-        <item name="@android:windowEnterAnimation">@anim/seekbar_hint_popup_show</item>
-        <item name="@android:windowExitAnimation">@anim/seekbar_hint_popup_hide</item>
+    <style name="ProgressHintPopupAnimation">
+        <item name="@android:windowEnterAnimation">@anim/progress_hint_popup_show</item>
+        <item name="@android:windowExitAnimation">@anim/progress_hint_popup_hide</item>
     </style>
 </resources>

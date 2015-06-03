@@ -1,8 +1,8 @@
 <resources>
     <declare-styleable name="Theme">
-        <attr name="seekBarHintStyle" format="reference" />
+        <attr name="progressHintStyle" format="reference" />
     </declare-styleable>
-    <declare-styleable name="SeekBarHint">
+    <declare-styleable name="ProgressHint">
         <attr name="popupLayout" format="reference" />
         <attr name="popupOffset" format="dimension" />
         <attr name="popupStyle" format="enum">

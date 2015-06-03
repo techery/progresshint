@@ -54,19 +54,20 @@ public abstract class ProgressHintDelegate implements SeekBar.OnSeekBarChangeLis
 
   public ProgressHintDelegate(SeekBar seekBar, AttributeSet attrs, int defStyleAttr) {
     TypedArray a = seekBar.getContext()
-        .obtainStyledAttributes(attrs, R.styleable.SeekBarHint, defStyleAttr,
-            R.style.Widget_SeekBarHint);
+        .obtainStyledAttributes(attrs, R.styleable.ProgressHint, defStyleAttr,
+            R.style.Widget_ProgressHint);
     //
     int mPopupLayout =
-        a.getResourceId(R.styleable.SeekBarHint_popupLayout, R.layout.seekbar_hint_popup);
-    int mPopupOffset = (int) a.getDimension(R.styleable.SeekBarHint_popupOffset, 0);
+        a.getResourceId(R.styleable.ProgressHint_popupLayout, R.layout.progress_hint_popup);
+    int mPopupOffset = (int) a.getDimension(R.styleable.ProgressHint_popupOffset, 0);
     int mPopupStyle =
-        a.getInt(R.styleable.SeekBarHint_popupStyle, ProgressHintDelegate.POPUP_FOLLOW);
-    int mPopupAnimStyle = a.getResourceId(R.styleable.SeekBarHint_popupAnimationStyle,
-        R.style.SeekBarHintPopupAnimation);
-    boolean mPopupAlwaysShown = a.getBoolean(R.styleable.SeekBarHint_popupAlwaysShown, false);
-    boolean mPopupDraggable = a.getBoolean(R.styleable.SeekBarHint_popupDraggable, false);
+        a.getInt(R.styleable.ProgressHint_popupStyle, ProgressHintDelegate.POPUP_FOLLOW);
+    int mPopupAnimStyle = a.getResourceId(R.styleable.ProgressHint_popupAnimationStyle,
+        R.style.ProgressHintPopupAnimation);
+    boolean mPopupAlwaysShown = a.getBoolean(R.styleable.ProgressHint_popupAlwaysShown, false);
+    boolean mPopupDraggable = a.getBoolean(R.styleable.ProgressHint_popupDraggable, false);
     a.recycle();
+    //
     initDelegate(seekBar, mPopupLayout, mPopupOffset, mPopupAlwaysShown,
         mPopupDraggable, mPopupStyle, mPopupAnimStyle, ProgressHintDelegate.DEFAULT_HINT_ADAPTER);
   }
