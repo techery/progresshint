@@ -1,0 +1,13 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.example.seekbarhint.MainActivity" >
+
+    <item android:id="@+id/action_fixed"
+        android:title="@string/action_fixed"
+        app:showAsAction="never" />
+
+    <item android:id="@+id/action_follow"
+        android:title="@string/action_follow"
+        app:showAsAction="never" />
+</menu>

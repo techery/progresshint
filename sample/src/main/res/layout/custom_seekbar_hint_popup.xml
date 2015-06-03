@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_custom_seekbar_hint_popup">
+
+    <TextView
+        android:id="@android:id/text1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:padding="12dp"
+        android:singleLine="true"
+        android:fontFamily="sans-serif-light"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textSize="16sp"
+        tools:text="Progress: 1000" />
+</FrameLayout>
