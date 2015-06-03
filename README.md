@@ -12,9 +12,13 @@ ProgressBar/SeekBar delegate to show floating progress with style
 **1)** In your `build.gradle`:
 
 ```gradle
- dependencies {
-   compile 'com.github.techery.progresshint:library-addition:0.2.0'
- }
+repositories {
+  jcenter()
+  maven { url "https://jitpack.io" }
+}
+dependencies {
+  compile 'com.github.techery.progresshint:library-addition:0.2.0'
+}
 ```
 
 **2)** In view XML
@@ -33,8 +37,6 @@ or
 <com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
-    android:layout_gravity="center"
-    android:layout_marginRight="-75dp"
     >
   <io.techery.progresshint.addition.widget.VerticalSeekBar
       android:layout_width="0dp"
@@ -78,6 +80,11 @@ seekBar.getHintDelegate()
     <item name="progressHintStyle">@style/Widget.ProgressHint</item>
 </style>
 ```
+
+## Credits
+Thanks to
++ @moondroid for [inspiration](https://github.com/moondroid/SeekBarHint)
++ @h6ah4i for [VerticalSeekBar](https://github.com/h6ah4i/android-verticalseekbar)
 
 ## License
 
