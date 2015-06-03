@@ -1,6 +1,8 @@
 # ProgressHint
 ProgressBar/SeekBar delegate to show floating progress with style
 
+![JitPack release](https://img.shields.io/github/tag/techery/progresshint.svg?label=JitPack)
+
 ![Demo](assets/progresshint-demo.gif)
 
 ## Description
@@ -17,7 +19,7 @@ repositories {
   maven { url "https://jitpack.io" }
 }
 dependencies {
-  compile 'com.github.techery.progresshint:library-addition:0.2.0'
+  compile 'com.github.techery.progresshint:library-addition:{jitpack-release}'
 }
 ```
 
