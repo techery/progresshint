@@ -1,5 +1,5 @@
 <resources>
-  <string name="app_name">Sample</string>
+  <string name="app_name">ProgressHint</string>
 
   <string name="action_follow">Follow</string>
   <string name="action_fixed">Fixed</string>

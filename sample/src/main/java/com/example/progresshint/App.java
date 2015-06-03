@@ -1,4 +1,4 @@
-package com.example.sample;
+package com.example.progresshint;
 
 import android.app.Application;
 import com.squareup.leakcanary.LeakCanary;

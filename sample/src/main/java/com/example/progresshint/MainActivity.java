@@ -1,4 +1,4 @@
-package com.example.sample;
+package com.example.progresshint;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -16,8 +16,8 @@ import static io.techery.progresshint.ProgressHintDelegate.SeekBarHintDelegateHo
 public class MainActivity extends AppCompatActivity {
 
   @InjectViews({
-      R.id.seekbar_horizontal1, R.id.seekbar_horizontal2,
-      R.id.seekbar_vertical1, R.id.seekbar_vertical2
+      R.id.seekbar_horizontal1, R.id.seekbar_horizontal2, R.id.seekbar_vertical1,
+      R.id.seekbar_vertical2
   }) List<SeekBarHintDelegateHolder> seekBars;
 
   @Override protected void onCreate(Bundle savedInstanceState) {
@@ -25,11 +25,12 @@ public class MainActivity extends AppCompatActivity {
     setContentView(R.layout.activity_main);
     ButterKnife.inject(this);
     //
-    seekBars.get(1).getHintDelegate().setHintAdapter(new SeekBarHintAdapter() {
-      @Override public String getHint(android.widget.SeekBar seekBar, int progress) {
-        return "V. Progress: " + String.valueOf(progress);
-      }
-    });
+    ((SeekBarHintDelegateHolder) findViewById(R.id.seekbar_vertical2)).getHintDelegate()
+        .setHintAdapter(new SeekBarHintAdapter() {
+          @Override public String getHint(android.widget.SeekBar seekBar, int progress) {
+            return "V. Progress: " + String.valueOf(progress);
+          }
+        });
   }
 
   @Override public boolean onCreateOptionsMenu(Menu menu) {

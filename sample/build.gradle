@@ -8,7 +8,7 @@ android {
     minSdkVersion rootProject.ext.minSdkVersion
     targetSdkVersion rootProject.ext.targetSdkVersion
 
-    applicationId "com.example.sample"
+    applicationId "com.example.progresshint"
     versionCode 1
     versionName "1.0"
   }
