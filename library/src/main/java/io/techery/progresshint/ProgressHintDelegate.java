@@ -50,6 +50,7 @@ public abstract class ProgressHintDelegate implements OnSeekBarChangeListener {
   }
 
   private SeekBarHintAdapter mHintAdapter;
+  private SeekBarHintAttacher mHintAttacher;
   private ProxyChangeListener listener = new ProxyChangeListener();
 
   private Handler handler = new Handler();
@@ -125,6 +126,7 @@ public abstract class ProgressHintDelegate implements OnSeekBarChangeListener {
       @Override public void onViewAttachedToWindow(View v) {
         mSeekBar.setOnSeekBarChangeListener(listener);
         mSeekBar.getViewTreeObserver().addOnGlobalLayoutListener(layoutListener);
+        if (mHintAttacher != null) mHintAttacher.onAttached();
       }
 
       @Override public void onViewDetachedFromWindow(View v) {
@@ -233,6 +235,10 @@ public abstract class ProgressHintDelegate implements OnSeekBarChangeListener {
     }
   }
 
+  public void setHintAttacher(SeekBarHintAttacher listener) {
+    this.mHintAttacher = listener;
+  }
+
   ///////////////////////////////////////////////////////////////////////////
   // Progress tracking
   ///////////////////////////////////////////////////////////////////////////
@@ -322,6 +328,10 @@ public abstract class ProgressHintDelegate implements OnSeekBarChangeListener {
 
   public interface SeekBarHintDelegateHolder {
     ProgressHintDelegate getHintDelegate();
+  }
+
+  public interface SeekBarHintAttacher {
+    void onAttached();
   }
 
   public interface SeekBarHintAdapter {
