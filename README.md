@@ -73,8 +73,6 @@ seekBar.getHintDelegate()
     });
 ```
 
-**3)** Optionally customize the displayed text in Java code:
-
 **4)** Optionally use `Theme` attribute
 
 ```xml
