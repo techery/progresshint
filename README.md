@@ -88,7 +88,7 @@ Thanks to
 
 ## License
 
-    Copyright (c) 2014 Techery
+    Copyright (c) 2015 Techery
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
