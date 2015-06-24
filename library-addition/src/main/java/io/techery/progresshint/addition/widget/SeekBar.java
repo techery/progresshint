@@ -26,7 +26,9 @@ public class SeekBar extends android.widget.SeekBar implements
   }
 
   private void init(AttributeSet attrs, int defStyle) {
-    hintDelegate = new HorizontalProgressHintDelegate(this, attrs, defStyle);
+    if (!isInEditMode()) {
+      hintDelegate = new HorizontalProgressHintDelegate(this, attrs, defStyle);
+    }
   }
 
   @Override public void setOnSeekBarChangeListener(OnSeekBarChangeListener l) {

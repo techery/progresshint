@@ -27,7 +27,9 @@ public class VerticalSeekBar extends com.h6ah4i.android.widget.verticalseekbar.V
   }
 
   private void init(AttributeSet attrs, int defStyle) {
-    hintDelegate = new VerticalProgressHintDelegate(this, attrs, defStyle);
+    if (!isInEditMode()) {
+      hintDelegate = new VerticalProgressHintDelegate(this, attrs, defStyle);
+    }
   }
 
   @Override public void setOnSeekBarChangeListener(OnSeekBarChangeListener l) {
