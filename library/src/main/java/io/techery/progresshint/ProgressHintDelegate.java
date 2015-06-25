@@ -119,7 +119,8 @@ public abstract class ProgressHintDelegate implements OnSeekBarChangeListener {
   private void attachSeekBar() {
     final OnGlobalLayoutListener layoutListener = new OnGlobalLayoutListener() {
       @Override public void onGlobalLayout() {
-        checkInitialState();
+        if (mSeekBar.getVisibility() != View.VISIBLE) hidePopup();
+        else checkInitialState();
       }
     };
     mSeekBar.addOnAttachStateChangeListener(new OnAttachStateChangeListener() {
