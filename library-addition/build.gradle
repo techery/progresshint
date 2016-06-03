@@ -23,7 +23,7 @@ repositories {
 
 dependencies {
   compile project(':library')
-  compile 'com.h6ah4i.android.widget.verticalseekbar:verticalseekbar:0.5.1'
+  compile 'com.h6ah4i.android.widget.verticalseekbar:verticalseekbar:0.6.0'
 }
 
 

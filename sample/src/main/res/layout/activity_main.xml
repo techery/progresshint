@@ -1,29 +1,30 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.percent.PercentFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context=".MainActivity"
     >
 
   <com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper
       android:layout_width="wrap_content"
       android:layout_height="match_parent"
-      android:layout_gravity="center"
-      android:layout_marginLeft="-75dp"
-      android:layout_marginTop="16dp"
-      android:layout_marginBottom="24dp"
+      android:layout_gravity="left"
+      app:layout_marginBottomPercent="10%"
+      app:layout_marginLeftPercent="30%"
+      app:layout_marginTopPercent="10%"
       >
+
     <io.techery.progresshint.addition.widget.VerticalSeekBar
         android:id="@+id/seekbar_vertical1"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:seekBarRotation="CW270"
         app:popupStyle="follow"
+        app:seekBarRotation="CW270"
         />
     <!-- Rotation: CW90 or CW270 -->
   </com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper>
@@ -31,18 +32,21 @@
   <com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper
       android:layout_width="wrap_content"
       android:layout_height="match_parent"
-      android:layout_gravity="center"
-      android:layout_marginRight="-75dp"
+      android:layout_gravity="right"
+      app:layout_marginBottomPercent="10%"
+      app:layout_marginRightPercent="30%"
+      app:layout_marginTopPercent="10%"
       >
+
     <io.techery.progresshint.addition.widget.VerticalSeekBar
         android:id="@+id/seekbar_vertical2"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:seekBarRotation="CW90"
-        app:popupStyle="follow"
-        app:popupLayout="@layout/custom_progress_hint_popup"
         app:popupAlwaysShown="true"
+        app:popupLayout="@layout/custom_progress_hint_popup"
         app:popupOffset="2dp"
+        app:popupStyle="follow"
+        app:seekBarRotation="CW90"
         />
     <!-- Rotation: CW90 or CW270 -->
   </com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper>
@@ -51,8 +55,9 @@
       android:id="@+id/seekbar_horizontal1"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:layout_gravity="center"
-      android:layout_marginTop="-75dp"
+      app:layout_marginLeftPercent="10%"
+      app:layout_marginRightPercent="10%"
+      app:layout_marginTopPercent="25%"
       app:popupStyle="follow"
       />
 
@@ -60,10 +65,12 @@
       android:id="@+id/seekbar_horizontal2"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:layout_gravity="center"
-      android:layout_marginBottom="-75dp"
-      app:popupStyle="follow"
+      android:layout_gravity="bottom"
+      app:layout_marginBottomPercent="25%"
+      app:layout_marginLeftPercent="10%"
+      app:layout_marginRightPercent="10%"
       app:popupAlwaysShown="true"
+      app:popupStyle="follow"
       />
 
-</FrameLayout>
+</android.support.percent.PercentFrameLayout>
