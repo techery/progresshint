@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Widget.ProgressHintBase" parent="android:Widget.Holo.SeekBar"/>
+    <style name="Widget" />
+    <style name="Widget.ProgressHintBase" />
 
     <style name="Widget.ProgressHint" parent="Widget.ProgressHintBase">
         <item name="popupLayout">@layout/progress_hint_popup</item>
@@ -10,8 +11,8 @@
         <item name="popupAlwaysShown">false</item>
         <item name="popupDraggable">true</item>
     </style>
-    <style name="ProgressHintPopupAnimation">
-        <item name="@android:windowEnterAnimation">@anim/progress_hint_popup_show</item>
-        <item name="@android:windowExitAnimation">@anim/progress_hint_popup_hide</item>
+    <style name="ProgressHintPopupAnimation" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/progress_hint_popup_show</item>
+        <item name="android:windowExitAnimation">@anim/progress_hint_popup_hide</item>
     </style>
 </resources>
