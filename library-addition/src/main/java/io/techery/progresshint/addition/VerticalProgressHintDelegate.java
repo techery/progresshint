@@ -2,10 +2,13 @@ package io.techery.progresshint.addition;
 
 import android.graphics.Point;
 import android.graphics.PointF;
+import android.support.annotation.IntDef;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.SeekBar;
 import io.techery.progresshint.ProgressHintDelegate;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 
 public class VerticalProgressHintDelegate extends ProgressHintDelegate {
 
@@ -36,29 +39,36 @@ public class VerticalProgressHintDelegate extends ProgressHintDelegate {
 
   private int getHorizontalOffset() {
     switch (getOrientation()) {
-      case 1:
+      case CW:
         return mPopupOffset;
-      case -1:
+      case CCW:
         return mSeekBar.getHeight() + mPopupOffset;
+      default:
+        throw new IllegalStateException("This widget orientation is not supported");
     }
-    return 0;
   }
 
   private int getVerticalOffset(int progress) {
-    int yOddOffset = 0;
+    int followPosition = getFollowPosition(progress);
+    int yOddOffset;
     switch (getOrientation()) {
-      case 1:
-        //yOddOffset = offsetPadding + mPopupView.getMeasuredHeight() / 2;
-        yOddOffset = mPopupView.getMeasuredHeight() / 2 + mSeekBar.getHeight() / 2 + 1;
-        break;
-      case -1:
-        yOddOffset = mPopupView.getMeasuredHeight() / 2 - mSeekBar.getHeight() / 2 - 1;
-        break;
+      case CW:
+        yOddOffset = mPopupView.getMeasuredHeight() / 2 + mSeekBar.getHeight() / 2 - 15;
+        return followPosition - yOddOffset;
+      case CCW:
+        yOddOffset = mPopupView.getMeasuredHeight() / 2 + mSeekBar.getHeight() * 2;
+        return -followPosition - yOddOffset;
+      default:
+        throw new IllegalStateException("This widget orientation is not supported");
     }
-    return getFollowPosition(progress) - yOddOffset;
   }
 
-  private int getOrientation() {
-    return (int) (mSeekBar.getRotation() / 90f);
+  @VerticalOrientation private int getOrientation() {
+    return (int) (mSeekBar.getRotation() / 90f) == 1 ? CW : CCW;
   }
+
+  @Retention(RetentionPolicy.SOURCE) @IntDef({ CW, CCW }) public @interface VerticalOrientation {}
+
+  private static final int CW = 1;
+  private static final int CCW = 0;
 }
