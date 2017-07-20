@@ -39,5 +39,4 @@ public class SeekBar extends android.widget.SeekBar implements
   public ProgressHintDelegate getHintDelegate() {
     return hintDelegate;
   }
-
 }

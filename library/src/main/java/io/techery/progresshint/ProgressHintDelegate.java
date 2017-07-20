@@ -45,9 +45,7 @@ public abstract class ProgressHintDelegate implements OnSeekBarChangeListener {
   public static final int POPUP_FIXED = 1;
   public static final int POPUP_FOLLOW = 0;
 
-  @Retention(RetentionPolicy.SOURCE) @IntDef({ POPUP_FIXED, POPUP_FOLLOW })
-  public @interface PopupStyle {
-  }
+  @Retention(RetentionPolicy.SOURCE) @IntDef({ POPUP_FIXED, POPUP_FOLLOW }) public @interface PopupStyle {}
 
   private SeekBarHintAdapter mHintAdapter;
   private SeekBarHintAttacher mHintAttacher;
@@ -56,35 +54,29 @@ public abstract class ProgressHintDelegate implements OnSeekBarChangeListener {
   private Handler handler = new Handler();
   private boolean isTracking;
 
-  public ProgressHintDelegate(SeekBar seekBar, int mPopupLayout, int mPopupOffset,
-      boolean mPopupAlwaysShown, boolean mPopupDraggable, int mPopupStyle, int mPopupAnimStyle) {
-    initDelegate(seekBar, mPopupLayout, mPopupOffset, mPopupAlwaysShown, mPopupDraggable,
-        mPopupStyle, mPopupAnimStyle, ProgressHintDelegate.DEFAULT_HINT_ADAPTER);
+  public ProgressHintDelegate(SeekBar seekBar, int mPopupLayout, int mPopupOffset, boolean mPopupAlwaysShown, boolean mPopupDraggable,
+      int mPopupStyle, int mPopupAnimStyle) {
+    initDelegate(seekBar, mPopupLayout, mPopupOffset, mPopupAlwaysShown, mPopupDraggable, mPopupStyle, mPopupAnimStyle,
+        ProgressHintDelegate.DEFAULT_HINT_ADAPTER);
   }
 
   public ProgressHintDelegate(SeekBar seekBar, AttributeSet attrs, int defStyleAttr) {
-    TypedArray a = seekBar.getContext()
-        .obtainStyledAttributes(attrs, R.styleable.ProgressHint, defStyleAttr,
-            R.style.Widget_ProgressHint);
+    TypedArray a = seekBar.getContext().obtainStyledAttributes(attrs, R.styleable.ProgressHint, defStyleAttr, R.style.Widget_ProgressHint);
     //
-    int mPopupLayout =
-        a.getResourceId(R.styleable.ProgressHint_popupLayout, R.layout.progress_hint_popup);
+    int mPopupLayout = a.getResourceId(R.styleable.ProgressHint_popupLayout, R.layout.progress_hint_popup);
     int mPopupOffset = (int) a.getDimension(R.styleable.ProgressHint_popupOffset, 0);
-    int mPopupStyle =
-        a.getInt(R.styleable.ProgressHint_popupStyle, ProgressHintDelegate.POPUP_FOLLOW);
-    int mPopupAnimStyle = a.getResourceId(R.styleable.ProgressHint_popupAnimationStyle,
-        R.style.ProgressHintPopupAnimation);
+    int mPopupStyle = a.getInt(R.styleable.ProgressHint_popupStyle, ProgressHintDelegate.POPUP_FOLLOW);
+    int mPopupAnimStyle = a.getResourceId(R.styleable.ProgressHint_popupAnimationStyle, R.style.ProgressHintPopupAnimation);
     boolean mPopupAlwaysShown = a.getBoolean(R.styleable.ProgressHint_popupAlwaysShown, false);
     boolean mPopupDraggable = a.getBoolean(R.styleable.ProgressHint_popupDraggable, false);
     a.recycle();
     //
-    initDelegate(seekBar, mPopupLayout, mPopupOffset, mPopupAlwaysShown, mPopupDraggable,
-        mPopupStyle, mPopupAnimStyle, ProgressHintDelegate.DEFAULT_HINT_ADAPTER);
+    initDelegate(seekBar, mPopupLayout, mPopupOffset, mPopupAlwaysShown, mPopupDraggable, mPopupStyle, mPopupAnimStyle,
+        ProgressHintDelegate.DEFAULT_HINT_ADAPTER);
   }
 
-  private void initDelegate(SeekBar seekBar, int mPopupLayout, int mPopupOffset,
-      boolean mPopupAlwaysShown, boolean mPopupDraggable, int mPopupStyle, int mPopupAnimStyle,
-      SeekBarHintAdapter mHintAdapter) {
+  private void initDelegate(SeekBar seekBar, int mPopupLayout, int mPopupOffset, boolean mPopupAlwaysShown, boolean mPopupDraggable,
+      int mPopupStyle, int mPopupAnimStyle, SeekBarHintAdapter mHintAdapter) {
     this.mSeekBar = seekBar;
     this.mPopupLayout = mPopupLayout;
     this.mPopupOffset = mPopupOffset;
@@ -105,8 +97,7 @@ public abstract class ProgressHintDelegate implements OnSeekBarChangeListener {
     }
 
     // init views
-    LayoutInflater inflater =
-        (LayoutInflater) mSeekBar.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    LayoutInflater inflater = (LayoutInflater) mSeekBar.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     mPopupView = inflater.inflate(mPopupLayout, null);
     mPopupView.measure(makeMeasureSpec(0, UNSPECIFIED), makeMeasureSpec(0, UNSPECIFIED));
     mPopupTextView = (TextView) mPopupView.findViewById(android.R.id.text1);
@@ -150,8 +141,8 @@ public abstract class ProgressHintDelegate implements OnSeekBarChangeListener {
   private OnTouchListener popupTouchProxy = new OnTouchListener() {
     @Override public boolean onTouch(View v, MotionEvent event) {
       PointF coordinates = getHintDragCoordinates(event);
-      event = MotionEvent.obtain(event.getDownTime(), event.getEventTime(), event.getAction(),
-          coordinates.x, coordinates.y, event.getMetaState());
+      event = MotionEvent
+          .obtain(event.getDownTime(), event.getEventTime(), event.getAction(), coordinates.x, coordinates.y, event.getMetaState());
       return mSeekBar.dispatchTouchEvent(event);
     }
   };
@@ -215,9 +206,8 @@ public abstract class ProgressHintDelegate implements OnSeekBarChangeListener {
 
   public void setPopupAlwaysShown(boolean alwaysShown) {
     this.mPopupAlwaysShown = alwaysShown;
-    if (alwaysShown) {
-      showPopup();
-    } else if (!isTracking) hidePopup();
+    if (alwaysShown) showPopup();
+    else if (!isTracking) hidePopup();
   }
 
   public boolean isPopupDraggable() {
@@ -318,9 +308,7 @@ public abstract class ProgressHintDelegate implements OnSeekBarChangeListener {
   }
 
   protected int getFollowPosition(int progress) {
-    return (int) (progress * (mSeekBar.getWidth()
-        - mSeekBar.getPaddingLeft()
-        - mSeekBar.getPaddingRight()) / (float) mSeekBar.getMax());
+    return (int) (progress * (mSeekBar.getWidth() - mSeekBar.getPaddingLeft() - mSeekBar.getPaddingRight()) / (float) mSeekBar.getMax());
   }
 
   ///////////////////////////////////////////////////////////////////////////

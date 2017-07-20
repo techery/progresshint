@@ -40,5 +40,4 @@ public class VerticalSeekBar extends com.h6ah4i.android.widget.verticalseekbar.V
   public ProgressHintDelegate getHintDelegate() {
     return hintDelegate;
   }
-
 }
