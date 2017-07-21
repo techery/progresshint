@@ -206,8 +206,12 @@ public abstract class ProgressHintDelegate implements OnSeekBarChangeListener {
 
   public void setPopupAlwaysShown(boolean alwaysShown) {
     this.mPopupAlwaysShown = alwaysShown;
-    if (alwaysShown) showPopup();
-    else if (!isTracking) hidePopup();
+    if (alwaysShown) {
+      showPopup();
+      listener.onProgressChanged(mSeekBar, mSeekBar.getProgress(), false);
+    } else if (!isTracking) {
+      hidePopup();
+    }
   }
 
   public boolean isPopupDraggable() {
