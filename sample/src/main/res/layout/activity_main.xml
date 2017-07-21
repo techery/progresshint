@@ -23,6 +23,7 @@
         android:id="@+id/seekbar_vertical1"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:splitTrack="false"
         app:popupStyle="follow"
         app:seekBarRotation="CW270"
         />
@@ -42,6 +43,7 @@
         android:id="@+id/seekbar_vertical2"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:splitTrack="false"
         app:popupAlwaysShown="true"
         app:popupLayout="@layout/custom_progress_hint_popup"
         app:popupOffset="2dp"

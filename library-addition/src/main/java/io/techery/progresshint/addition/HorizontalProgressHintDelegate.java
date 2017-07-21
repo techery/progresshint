@@ -32,7 +32,7 @@ public class HorizontalProgressHintDelegate extends ProgressHintDelegate {
   }
 
   private int getHorizontalOffset(int progress) {
-    return getFollowPosition(progress) - mPopupView.getMeasuredWidth() / 2 + mSeekBar.getHeight() / 2;
+    return getFollowPosition(progress) - mPopupView.getMeasuredWidth() / 2 + mSeekBar.getHeight() / 2 + 15;
   }
 
   private int getVerticalOffset() {
