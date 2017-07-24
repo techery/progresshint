@@ -5,8 +5,7 @@ import android.util.AttributeSet;
 import io.techery.progresshint.ProgressHintDelegate;
 import io.techery.progresshint.addition.HorizontalProgressHintDelegate;
 
-public class SeekBar extends android.widget.SeekBar implements
-    ProgressHintDelegate.SeekBarHintDelegateHolder {
+public class SeekBar extends android.support.v7.widget.AppCompatSeekBar implements ProgressHintDelegate.SeekBarHintDelegateHolder {
 
   private ProgressHintDelegate hintDelegate;
 
