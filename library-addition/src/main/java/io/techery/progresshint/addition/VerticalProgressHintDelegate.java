@@ -2,9 +2,11 @@ package io.techery.progresshint.addition;
 
 import android.graphics.Point;
 import android.graphics.PointF;
+import android.graphics.Rect;
 import android.support.annotation.IntDef;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
+import android.view.View;
 import android.widget.SeekBar;
 import io.techery.progresshint.ProgressHintDelegate;
 import java.lang.annotation.Retention;
@@ -71,4 +73,15 @@ public class VerticalProgressHintDelegate extends ProgressHintDelegate {
 
   private static final int CW = 1;
   private static final int CCW = 0;
+
+  ///////////////////////////////////////////////////////////////////////////
+  // Visibility Helper
+  ///////////////////////////////////////////////////////////////////////////
+
+  private final Rect rect = new Rect();
+
+  @Override public boolean isWidgetFullyVisible(View container) {
+    mSeekBar.getLocalVisibleRect(rect);
+    return rect.bottom >= 0 && rect.bottom <= container.getHeight() && (rect.bottom - rect.top) == mSeekBar.getWidth();
+  }
 }

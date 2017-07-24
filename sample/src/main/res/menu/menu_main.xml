@@ -10,4 +10,8 @@
     <item android:id="@+id/action_follow"
         android:title="@string/action_follow"
         app:showAsAction="never" />
+
+    <item android:id="@+id/action_open_scroll"
+        android:title="@string/action_open_scroll"
+        app:showAsAction="never" />
 </menu>
