@@ -81,6 +81,11 @@ seekBar.getHintDelegate()
 </style>
 ```
 
+**5)** Optionally if inside ScrollView
+
+Use `ProgressHintScrollController` to hide & show popup properly on scrolling. 
+See [Sample's Activity](https://github.com/techery/progresshint/blob/master/sample/src/main/java/com/example/progresshint/ScrollActivity.java) for details
+
 ## Credits
 Thanks to
 + @moondroid for [inspiration](https://github.com/moondroid/SeekBarHint)
