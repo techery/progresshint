@@ -150,6 +150,7 @@ public abstract class ProgressHintDelegate implements OnSeekBarChangeListener {
   protected abstract PointF getHintDragCoordinates(MotionEvent event);
 
   public void showPopup() {
+    handler.removeCallbacksAndMessages(null);
     handler.post(new Runnable() {
       @Override public void run() {
         showPopupInternally();
@@ -176,9 +177,19 @@ public abstract class ProgressHintDelegate implements OnSeekBarChangeListener {
     if (mPopup.isShowing()) mPopup.dismiss();
   }
 
+  public boolean isPopupVisible() {
+    return mPopup.isShowing();
+  }
+
+  public abstract boolean isWidgetFullyVisible(View container);
+
   ///////////////////////////////////////////////////////////////////////////
   // Public api
   ///////////////////////////////////////////////////////////////////////////
+
+  public SeekBar getSeekBar() {
+    return mSeekBar;
+  }
 
   @LayoutRes public int getPopupLayout() {
     return mPopupLayout;

@@ -1,0 +1,80 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+  <View
+      android:layout_width="wrap_content"
+      android:layout_height="200dp"
+      android:background="#58961e"
+      />
+
+  <ScrollView
+      xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      android:id="@+id/scroll_container"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      >
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+      <View
+          android:layout_width="wrap_content"
+          android:layout_height="200dp"
+          android:background="#1e3e96"
+          />
+
+      <io.techery.progresshint.addition.widget.SeekBar
+          android:id="@+id/seekbar1"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          app:popupAlwaysShown="true"
+          app:popupStyle="follow"
+          />
+
+      <View
+          android:layout_width="wrap_content"
+          android:layout_height="200dp"
+          android:background="#961e8e"
+          />
+
+      <com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper
+          android:layout_width="wrap_content"
+          android:layout_height="100dp"
+          android:layout_gravity="left"
+          app:layout_marginBottomPercent="10%"
+          app:layout_marginLeftPercent="30%"
+          app:layout_marginTopPercent="10%"
+          >
+
+        <io.techery.progresshint.addition.widget.VerticalSeekBar
+            android:id="@+id/seekbar2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:splitTrack="false"
+            app:popupAlwaysShown="true"
+            app:popupStyle="fixed"
+            app:seekBarRotation="CW90"
+            />
+        <!-- Rotation: CW90 or CW270 -->
+      </com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper>
+
+      <View
+          android:layout_width="wrap_content"
+          android:layout_height="500dp"
+          android:background="#ba3720"
+          />
+
+    </LinearLayout>
+  </ScrollView>
+
+</LinearLayout>

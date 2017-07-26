@@ -6,8 +6,7 @@ import io.techery.progresshint.ProgressHintDelegate;
 import io.techery.progresshint.ProgressHintDelegate.SeekBarHintDelegateHolder;
 import io.techery.progresshint.addition.VerticalProgressHintDelegate;
 
-public class VerticalSeekBar extends com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBar
-    implements SeekBarHintDelegateHolder {
+public class VerticalSeekBar extends com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBar implements SeekBarHintDelegateHolder {
 
   private ProgressHintDelegate hintDelegate;
 

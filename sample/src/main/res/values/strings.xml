@@ -3,4 +3,5 @@
 
   <string name="action_follow">Follow</string>
   <string name="action_fixed">Fixed</string>
+  <string name="action_open_scroll">Check Scroll</string>
 </resources>

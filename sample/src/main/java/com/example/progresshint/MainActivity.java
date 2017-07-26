@@ -1,5 +1,6 @@
 package com.example.progresshint;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -51,6 +52,9 @@ public class MainActivity extends AppCompatActivity {
       case R.id.action_follow:
         style = POPUP_FOLLOW;
         break;
+      case R.id.action_open_scroll:
+        startActivity(new Intent(this, ScrollActivity.class));
+        return true;
     }
     for (SeekBarHintDelegateHolder seekBar : seekBars) {
       seekBar.getHintDelegate().setPopupStyle(style);
