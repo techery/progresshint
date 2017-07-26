@@ -29,7 +29,7 @@
 
       <View
           android:layout_width="wrap_content"
-          android:layout_height="150dp"
+          android:layout_height="200dp"
           android:background="#1e3e96"
           />
 
@@ -62,8 +62,8 @@
             android:layout_height="0dp"
             android:splitTrack="false"
             app:popupAlwaysShown="true"
-            app:popupStyle="follow"
-            app:seekBarRotation="CW270"
+            app:popupStyle="fixed"
+            app:seekBarRotation="CW90"
             />
         <!-- Rotation: CW90 or CW270 -->
       </com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper>

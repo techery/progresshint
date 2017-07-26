@@ -2,7 +2,6 @@ package io.techery.progresshint.addition;
 
 import android.graphics.Point;
 import android.graphics.PointF;
-import android.graphics.Rect;
 import android.support.annotation.IntDef;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
@@ -78,10 +77,28 @@ public class VerticalProgressHintDelegate extends ProgressHintDelegate {
   // Visibility Helper
   ///////////////////////////////////////////////////////////////////////////
 
-  private final Rect rect = new Rect();
-
   @Override public boolean isWidgetFullyVisible(View container) {
-    mSeekBar.getLocalVisibleRect(rect);
-    return rect.bottom >= 0 && rect.bottom <= container.getHeight() && (rect.bottom - rect.top) == mSeekBar.getWidth();
+    int relativeTop = ViewUtil.getRelativeTop(mSeekBar, container);
+    int followPosition = getFollowPosition(getPopupStyle() == POPUP_FOLLOW ? mSeekBar.getProgress() : mSeekBar.getMax() / 2);
+    //
+    boolean fitsTop;
+    boolean fitsBottom;
+    switch (getOrientation()) {
+      case CW:
+        fitsTop =
+            relativeTop + followPosition + mSeekBar.getPaddingLeft() - mPopupView.getHeight() / 2 > container.getScrollY();
+        fitsBottom = container.getHeight() + container.getScrollY() >
+            relativeTop + followPosition + mSeekBar.getPaddingRight() + mPopupView.getHeight() / 2;
+        break;
+      case CCW:
+        fitsTop = relativeTop + (mSeekBar.getWidth() - followPosition) - mPopupView.getHeight() > container.getScrollY();
+        fitsBottom = container.getHeight() + container.getScrollY() + (followPosition + mSeekBar.getPaddingLeft()) >
+            relativeTop + mSeekBar.getWidth() + mPopupView.getHeight() / 2;
+        break;
+      default:
+        throw new IllegalStateException("This widget orientation is not supported");
+    }
+    //
+    return fitsTop && fitsBottom;
   }
 }

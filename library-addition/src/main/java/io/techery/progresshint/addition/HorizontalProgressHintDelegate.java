@@ -2,7 +2,6 @@ package io.techery.progresshint.addition;
 
 import android.graphics.Point;
 import android.graphics.PointF;
-import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -45,10 +44,10 @@ public class HorizontalProgressHintDelegate extends ProgressHintDelegate {
   // Visibility Helper
   ///////////////////////////////////////////////////////////////////////////
 
-  private final Rect rect = new Rect();
-
   @Override public boolean isWidgetFullyVisible(View container) {
-    mSeekBar.getLocalVisibleRect(rect);
-    return rect.bottom >= 0 && rect.top >= 0 && rect.bottom <= container.getHeight() && (rect.bottom - rect.top) == mSeekBar.getHeight();
+    int relativeTop = ViewUtil.getRelativeTop(mSeekBar, container);
+    return (container.getScrollY() < relativeTop - mPopupView.getHeight() - mPopupOffset) // top edge
+        && (container.getHeight() + container.getScrollY() - mPopupView.getHeight() - mPopupOffset
+        > relativeTop - mSeekBar.getHeight()); // bottom edge
   }
 }
