@@ -19,10 +19,21 @@ public class VerticalProgressHintDelegate extends ProgressHintDelegate {
 
   final int[] tmpCoords = new int[2];
 
-  @Override protected PointF getHintDragCoordinates(MotionEvent event) {
+  @Override
+  protected PointF getHintDragCoordinates(MotionEvent event) {
     mSeekBar.getLocationOnScreen(tmpCoords);
-    float x = (event.getRawY() - tmpCoords[1]) * getOrientation();
+    float x;
     float y = mSeekBar.getY();
+    switch (getOrientation()) {
+      case CW:
+        x = event.getRawY() - tmpCoords[1];
+        break;
+      case CCW:
+        x = tmpCoords[1] - event.getRawY();
+        break;
+      default:
+        throw new IllegalStateException("This widget orientation is not supported");
+    }
     return new PointF(x, y);
   }
 
