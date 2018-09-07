@@ -1,16 +1,16 @@
 <resources>
-    <declare-styleable name="Theme">
-        <attr name="progressHintStyle" format="reference" />
-    </declare-styleable>
-    <declare-styleable name="ProgressHint">
-        <attr name="popupLayout" format="reference" />
-        <attr name="popupOffset" format="dimension" />
-        <attr name="popupStyle" format="enum">
-            <enum name="follow" value="0"/>
-            <enum name="fixed" value="1"/>
-        </attr>
-        <attr name="popupAnimationStyle" format="reference"/>
-        <attr name="popupAlwaysShown" format="boolean"/>
-        <attr name="popupDraggable" format="boolean" />
-    </declare-styleable>
+  <declare-styleable name="Theme">
+    <attr name="progressHintStyle" format="reference"/>
+  </declare-styleable>
+  <declare-styleable name="ProgressHint">
+    <attr name="popupLayout" format="reference"/>
+    <attr name="popupOffset" format="dimension"/>
+    <attr name="popupStyle" format="enum">
+      <enum name="follow" value="0"/>
+      <enum name="fixed" value="1"/>
+    </attr>
+    <attr name="popupAnimationStyle" format="reference"/>
+    <attr name="popupAlwaysShown" format="boolean"/>
+    <attr name="popupDraggable" format="boolean"/>
+  </declare-styleable>
 </resources>

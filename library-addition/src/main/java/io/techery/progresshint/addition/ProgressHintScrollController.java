@@ -32,5 +32,4 @@ public class ProgressHintScrollController implements ViewTreeObserver.OnScrollCh
   public void dispose() {
     container.getViewTreeObserver().removeOnScrollChangedListener(this);
   }
-
 }

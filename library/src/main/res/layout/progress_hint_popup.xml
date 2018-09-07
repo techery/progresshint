@@ -3,18 +3,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@drawable/bg_progress_hint_popup">
+    android:background="@drawable/bg_progress_hint_popup"
+    >
 
-    <TextView
-        android:id="@android:id/text1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:ellipsize="end"
-        android:gravity="center"
-        android:padding="8dp"
-        android:singleLine="true"
-        android:textColor="@android:color/white"
-        android:textSize="16sp"
-        tools:text="Progress: 1000" />
+  <TextView
+      android:id="@android:id/text1"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center"
+      android:ellipsize="end"
+      android:gravity="center"
+      android:padding="8dp"
+      android:singleLine="true"
+      android:textColor="@android:color/white"
+      android:textSize="16sp"
+      tools:text="Progress: 1000"
+      />
 </FrameLayout>
