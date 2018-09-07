@@ -37,7 +37,8 @@ proguard/
 # Android Studio
 .idea/*
 **/*/.idea
-!.idea/codeStyleSettings.xml
+!.idea/codeStyles
+captures/*
 .gradle
 */local.properties
 */out
