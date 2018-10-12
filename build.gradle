@@ -15,7 +15,7 @@ ext {
   minSdkVersion = 15
   targetSdkVersion = 28
 
-  supportPackageVersion = '28.0.0'
+  androidxVersion = '1.0.0'
 }
 
 allprojects {

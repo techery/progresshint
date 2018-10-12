@@ -2,12 +2,11 @@ package com.example.progresshint;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.SeekBar;
-import butterknife.BindViews;
-import butterknife.ButterKnife;
+import androidx.appcompat.app.AppCompatActivity;
+import java.util.Arrays;
 import java.util.List;
 
 import static io.techery.progresshint.ProgressHintDelegate.POPUP_FIXED;
@@ -17,16 +16,18 @@ import static io.techery.progresshint.ProgressHintDelegate.SeekBarHintDelegateHo
 
 public class MainActivity extends AppCompatActivity {
 
-  @BindViews({
-      R.id.seekbar_horizontal1, R.id.seekbar_horizontal2, R.id.seekbar_vertical1,
-      R.id.seekbar_vertical2
-  }) List<SeekBarHintDelegateHolder> seekBars;
+  List<SeekBarHintDelegateHolder> seekBars;
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
-    ButterKnife.bind(this);
-    //
+    seekBars = Arrays.asList(
+        ((SeekBarHintDelegateHolder) findViewById(R.id.seekbar_horizontal1)),
+        ((SeekBarHintDelegateHolder) findViewById(R.id.seekbar_horizontal2)),
+        ((SeekBarHintDelegateHolder) findViewById(R.id.seekbar_vertical1)),
+        ((SeekBarHintDelegateHolder) findViewById(R.id.seekbar_vertical2))
+    );
+    //®
     ((SeekBarHintDelegateHolder) findViewById(R.id.seekbar_vertical2)).getHintDelegate()
         .setHintAdapter(new SeekBarHintAdapter() {
           @Override public String getHint(android.widget.SeekBar seekBar, int progress) {
@@ -34,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
           }
         });
 
-    SeekBar bar = ButterKnife.findById(this, R.id.seekbar_vertical2);
+    SeekBar bar = findViewById(R.id.seekbar_vertical2);
     bar.setProgress(50);
   }
 

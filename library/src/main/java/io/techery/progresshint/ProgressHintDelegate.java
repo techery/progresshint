@@ -6,8 +6,6 @@ import android.graphics.Point;
 import android.graphics.PointF;
 import android.os.Build;
 import android.os.Handler;
-import android.support.annotation.IntDef;
-import android.support.annotation.LayoutRes;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -20,6 +18,8 @@ import android.widget.PopupWindow;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
+import androidx.annotation.IntDef;
+import androidx.annotation.LayoutRes;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
