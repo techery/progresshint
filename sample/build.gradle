@@ -19,11 +19,11 @@ repositories {
 }
 
 dependencies {
-  compile project(':library-addition')
+  implementation project(':library-addition')
 
-  compile "com.android.support:appcompat-v7:$rootProject.ext.supportPackageVersion"
-  compile "com.android.support:percent:$rootProject.ext.supportPackageVersion"
+  implementation "com.android.support:appcompat-v7:$rootProject.ext.supportPackageVersion"
+  implementation "com.android.support:percent:$rootProject.ext.supportPackageVersion"
 
-  compile 'com.jakewharton:butterknife:8.7.0'
+  implementation 'com.jakewharton:butterknife:8.7.0'
   annotationProcessor 'com.jakewharton:butterknife-compiler:8.7.0'
 }
