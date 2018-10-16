@@ -142,9 +142,12 @@ public abstract class ProgressHintDelegate implements OnSeekBarChangeListener {
   private OnTouchListener popupTouchProxy = new OnTouchListener() {
     @Override public boolean onTouch(View v, MotionEvent event) {
       PointF coordinates = getHintDragCoordinates(event);
-      event = MotionEvent
-          .obtain(event.getDownTime(), event.getEventTime(), event.getAction(), coordinates.x, coordinates.y, event.getMetaState());
-      return mSeekBar.dispatchTouchEvent(event);
+      MotionEvent modifiedEvent = MotionEvent.obtain(event.getDownTime(), event.getEventTime(), event.getAction(),
+          coordinates.x, coordinates.y, event.getMetaState()
+      );
+      boolean dispatched = mSeekBar.dispatchTouchEvent(modifiedEvent);
+      modifiedEvent.recycle();
+      return dispatched;
     }
   };
 
