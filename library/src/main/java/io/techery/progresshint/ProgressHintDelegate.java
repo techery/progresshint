@@ -1,5 +1,6 @@
 package io.techery.progresshint;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Point;
@@ -20,6 +21,7 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 import androidx.annotation.IntDef;
 import androidx.annotation.LayoutRes;
+import androidx.annotation.NonNull;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
@@ -27,6 +29,7 @@ import static android.view.View.MeasureSpec.UNSPECIFIED;
 import static android.view.View.MeasureSpec.makeMeasureSpec;
 import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 
+@SuppressWarnings({ "WeakerAccess", "unused" })
 public abstract class ProgressHintDelegate implements OnSeekBarChangeListener {
 
   protected SeekBar mSeekBar;
@@ -56,8 +59,7 @@ public abstract class ProgressHintDelegate implements OnSeekBarChangeListener {
 
   public ProgressHintDelegate(SeekBar seekBar, int mPopupLayout, int mPopupOffset, boolean mPopupAlwaysShown, boolean mPopupDraggable,
       int mPopupStyle, int mPopupAnimStyle) {
-    initDelegate(seekBar, mPopupLayout, mPopupOffset, mPopupAlwaysShown, mPopupDraggable, mPopupStyle, mPopupAnimStyle,
-        ProgressHintDelegate.DEFAULT_HINT_ADAPTER);
+    initDelegate(seekBar, mPopupLayout, mPopupOffset, mPopupAlwaysShown, mPopupDraggable, mPopupStyle, mPopupAnimStyle);
   }
 
   public ProgressHintDelegate(SeekBar seekBar, AttributeSet attrs, int defStyleAttr) {
@@ -71,12 +73,11 @@ public abstract class ProgressHintDelegate implements OnSeekBarChangeListener {
     boolean mPopupDraggable = a.getBoolean(R.styleable.ProgressHint_popupDraggable, false);
     a.recycle();
     //
-    initDelegate(seekBar, mPopupLayout, mPopupOffset, mPopupAlwaysShown, mPopupDraggable, mPopupStyle, mPopupAnimStyle,
-        ProgressHintDelegate.DEFAULT_HINT_ADAPTER);
+    initDelegate(seekBar, mPopupLayout, mPopupOffset, mPopupAlwaysShown, mPopupDraggable, mPopupStyle, mPopupAnimStyle);
   }
 
   private void initDelegate(SeekBar seekBar, int mPopupLayout, int mPopupOffset, boolean mPopupAlwaysShown, boolean mPopupDraggable,
-      int mPopupStyle, int mPopupAnimStyle, SeekBarHintAdapter mHintAdapter) {
+      int mPopupStyle, int mPopupAnimStyle) {
     this.mSeekBar = seekBar;
     this.mPopupLayout = mPopupLayout;
     this.mPopupOffset = mPopupOffset;
@@ -84,7 +85,7 @@ public abstract class ProgressHintDelegate implements OnSeekBarChangeListener {
     this.mPopupDraggable = mPopupDraggable;
     this.mPopupStyle = mPopupStyle;
     this.mPopupAnimStyle = mPopupAnimStyle;
-    this.mHintAdapter = mHintAdapter;
+    this.mHintAdapter = ProgressHintDelegate.DEFAULT_HINT_ADAPTER;
 
     initHintPopup();
     attachSeekBar();
@@ -100,7 +101,7 @@ public abstract class ProgressHintDelegate implements OnSeekBarChangeListener {
     LayoutInflater inflater = (LayoutInflater) mSeekBar.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     mPopupView = inflater.inflate(mPopupLayout, null);
     mPopupView.measure(makeMeasureSpec(0, UNSPECIFIED), makeMeasureSpec(0, UNSPECIFIED));
-    mPopupTextView = (TextView) mPopupView.findViewById(android.R.id.text1);
+    mPopupTextView = mPopupView.findViewById(android.R.id.text1);
     mPopupTextView.setText(popupText != null ? popupText : String.valueOf(mSeekBar.getProgress()));
     // init popup
     mPopup = new PopupWindow(mPopupView, WRAP_CONTENT, WRAP_CONTENT, false);
@@ -139,11 +140,15 @@ public abstract class ProgressHintDelegate implements OnSeekBarChangeListener {
   }
 
   private OnTouchListener popupTouchProxy = new OnTouchListener() {
+    @SuppressLint("ClickableViewAccessibility")
     @Override public boolean onTouch(View v, MotionEvent event) {
       PointF coordinates = getHintDragCoordinates(event);
-      event = MotionEvent
-          .obtain(event.getDownTime(), event.getEventTime(), event.getAction(), coordinates.x, coordinates.y, event.getMetaState());
-      return mSeekBar.dispatchTouchEvent(event);
+      MotionEvent modifiedEvent = MotionEvent.obtain(event.getDownTime(), event.getEventTime(), event.getAction(),
+          coordinates.x, coordinates.y, event.getMetaState()
+      );
+      boolean dispatched = mSeekBar.dispatchTouchEvent(modifiedEvent);
+      modifiedEvent.recycle();
+      return dispatched;
     }
   };
 
@@ -159,7 +164,7 @@ public abstract class ProgressHintDelegate implements OnSeekBarChangeListener {
   }
 
   private void showPopupInternally() {
-    Point offsetPoint = null;
+    final Point offsetPoint;
     switch (mPopupStyle) {
       case POPUP_FOLLOW:
         offsetPoint = getFollowHintOffset();
@@ -167,6 +172,8 @@ public abstract class ProgressHintDelegate implements OnSeekBarChangeListener {
       case POPUP_FIXED:
         offsetPoint = getFixedHintOffset();
         break;
+      default:
+        throw new IllegalArgumentException("Popup style is unknown");
     }
     mPopup.showAtLocation(mSeekBar, Gravity.NO_GRAVITY, 0, 0);
     mPopup.update(mSeekBar, offsetPoint.x, offsetPoint.y, -1, -1);
@@ -234,14 +241,14 @@ public abstract class ProgressHintDelegate implements OnSeekBarChangeListener {
     if (mPopupView != null) mPopupView.setOnTouchListener(draggable ? popupTouchProxy : null);
   }
 
-  public void setHintAdapter(SeekBarHintAdapter adapter) {
+  public void setHintAdapter(@NonNull SeekBarHintAdapter adapter) {
     mHintAdapter = adapter;
     if (mPopupTextView != null) {
       mPopupTextView.setText(mHintAdapter.getHint(mSeekBar, mSeekBar.getProgress()));
     }
   }
 
-  public void setHintAttacher(SeekBarHintAttacher listener) {
+  public void setHintAttacher(@NonNull SeekBarHintAttacher listener) {
     this.mHintAttacher = listener;
   }
 
@@ -254,11 +261,11 @@ public abstract class ProgressHintDelegate implements OnSeekBarChangeListener {
     private OnSeekBarChangeListener mInternalListener;
     private OnSeekBarChangeListener mExternalListener;
 
-    public void setInternalListener(OnSeekBarChangeListener l) {
+    void setInternalListener(OnSeekBarChangeListener l) {
       mInternalListener = l;
     }
 
-    public void setExternalListener(OnSeekBarChangeListener l) {
+    void setExternalListener(OnSeekBarChangeListener l) {
       mExternalListener = l;
     }
 
@@ -282,7 +289,7 @@ public abstract class ProgressHintDelegate implements OnSeekBarChangeListener {
     }
   }
 
-  public OnSeekBarChangeListener setOnSeekBarChangeListener(OnSeekBarChangeListener l) {
+  public OnSeekBarChangeListener setOnSeekBarChangeListener(@NonNull OnSeekBarChangeListener l) {
     if (l instanceof ProxyChangeListener) {
       listener = (ProxyChangeListener) l;
     } else {
@@ -302,11 +309,8 @@ public abstract class ProgressHintDelegate implements OnSeekBarChangeListener {
   }
 
   @Override public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-    String popupText = null;
-    if (mHintAdapter != null) {
-      popupText = mHintAdapter.getHint(mSeekBar, progress);
-    }
-    mPopupTextView.setText(popupText != null ? popupText : String.valueOf(progress));
+    String popupText = mHintAdapter.getHint(mSeekBar, progress);
+    mPopupTextView.setText(popupText);
 
     if (mPopupStyle == POPUP_FOLLOW) {
       Point offsetPoint = getFollowHintOffset();
@@ -339,11 +343,11 @@ public abstract class ProgressHintDelegate implements OnSeekBarChangeListener {
   }
 
   public interface SeekBarHintAdapter {
-    String getHint(SeekBar seekBar, int progress);
+    @NonNull String getHint(SeekBar seekBar, int progress);
   }
 
   public static final SeekBarHintAdapter DEFAULT_HINT_ADAPTER = new SeekBarHintAdapter() {
-    @Override public String getHint(SeekBar seekBar, int progress) {
+    @NonNull @Override public String getHint(SeekBar seekBar, int progress) {
       return String.valueOf(progress);
     }
   };
