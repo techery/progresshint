@@ -2,11 +2,11 @@ package io.techery.progresshint.addition;
 
 import android.graphics.Point;
 import android.graphics.PointF;
-import android.support.annotation.IntDef;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.SeekBar;
+import androidx.annotation.IntDef;
 import io.techery.progresshint.ProgressHintDelegate;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

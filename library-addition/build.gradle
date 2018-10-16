@@ -12,9 +12,9 @@ android {
 }
 
 dependencies {
-  compile project(':library')
-  compile 'com.h6ah4i.android.widget.verticalseekbar:verticalseekbar:0.7.2'
-  compile "com.android.support:support-core-ui:$rootProject.ext.supportPackageVersion"
-  compile "com.android.support:appcompat-v7:$rootProject.ext.supportPackageVersion"
-  compile "com.android.support:animated-vector-drawable:$rootProject.ext.supportPackageVersion"
+  api project(':library')
+  api 'com.h6ah4i.android.widget.verticalseekbar:verticalseekbar:1.0.0'
+  implementation "androidx.appcompat:appcompat:$rootProject.ext.androidxVersion"
+  implementation "androidx.legacy:legacy-support-core-ui:$rootProject.ext.androidxVersion"
+  implementation "androidx.vectordrawable:vectordrawable-animated:$rootProject.ext.androidxVersion"
 }

@@ -1,4 +1,4 @@
-<android.support.percent.PercentFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.percentlayout.widget.PercentFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -75,4 +75,4 @@
       app:popupStyle="follow"
       />
 
-</android.support.percent.PercentFrameLayout>
+</androidx.percentlayout.widget.PercentFrameLayout>
