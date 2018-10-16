@@ -20,6 +20,7 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 import androidx.annotation.IntDef;
 import androidx.annotation.LayoutRes;
+import androidx.annotation.NonNull;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
@@ -234,14 +235,14 @@ public abstract class ProgressHintDelegate implements OnSeekBarChangeListener {
     if (mPopupView != null) mPopupView.setOnTouchListener(draggable ? popupTouchProxy : null);
   }
 
-  public void setHintAdapter(SeekBarHintAdapter adapter) {
+  public void setHintAdapter(@NonNull SeekBarHintAdapter adapter) {
     mHintAdapter = adapter;
     if (mPopupTextView != null) {
       mPopupTextView.setText(mHintAdapter.getHint(mSeekBar, mSeekBar.getProgress()));
     }
   }
 
-  public void setHintAttacher(SeekBarHintAttacher listener) {
+  public void setHintAttacher(@NonNull SeekBarHintAttacher listener) {
     this.mHintAttacher = listener;
   }
 
@@ -302,11 +303,8 @@ public abstract class ProgressHintDelegate implements OnSeekBarChangeListener {
   }
 
   @Override public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-    String popupText = null;
-    if (mHintAdapter != null) {
-      popupText = mHintAdapter.getHint(mSeekBar, progress);
-    }
-    mPopupTextView.setText(popupText != null ? popupText : String.valueOf(progress));
+    String popupText = mHintAdapter.getHint(mSeekBar, progress);
+    mPopupTextView.setText(popupText);
 
     if (mPopupStyle == POPUP_FOLLOW) {
       Point offsetPoint = getFollowHintOffset();
@@ -339,11 +337,11 @@ public abstract class ProgressHintDelegate implements OnSeekBarChangeListener {
   }
 
   public interface SeekBarHintAdapter {
-    String getHint(SeekBar seekBar, int progress);
+    @NonNull String getHint(SeekBar seekBar, int progress);
   }
 
   public static final SeekBarHintAdapter DEFAULT_HINT_ADAPTER = new SeekBarHintAdapter() {
-    @Override public String getHint(SeekBar seekBar, int progress) {
+    @NonNull @Override public String getHint(SeekBar seekBar, int progress) {
       return String.valueOf(progress);
     }
   };
