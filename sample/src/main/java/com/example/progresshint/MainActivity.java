@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.SeekBar;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import java.util.Arrays;
 import java.util.List;
@@ -30,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     //®
     ((SeekBarHintDelegateHolder) findViewById(R.id.seekbar_vertical2)).getHintDelegate()
         .setHintAdapter(new SeekBarHintAdapter() {
-          @Override public String getHint(android.widget.SeekBar seekBar, int progress) {
+          @NonNull @Override public String getHint(android.widget.SeekBar seekBar, int progress) {
             return "V. Progress: " + String.valueOf(progress);
           }
         });
