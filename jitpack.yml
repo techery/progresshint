@@ -1,5 +1,2 @@
 jdk:
-  - openjdk11
-install:
-  - ./gradlew :library:build library-addition publishToMavenLocal
-  - find . -name "*.aar"
+  - openjdk17
