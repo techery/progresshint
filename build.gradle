@@ -1,12 +1,6 @@
-buildscript {
-  repositories {
-    google()
-    mavenCentral()
-    gradlePluginPortal()
-  }
-  dependencies {
-    classpath 'com.android.tools.build:gradle:8.1.0'
-  }
+plugins {
+  id 'com.android.application' version '8.1.0' apply false
+  id 'com.android.library' version '8.1.0' apply false
 }
 
 ext {
@@ -15,11 +9,4 @@ ext {
   targetSdkVersion = 28
 
   androidxVersion = '1.0.0'
-}
-
-allprojects {
-  repositories {
-    google()
-    mavenCentral()
-  }
 }

@@ -1,9 +1,11 @@
-apply plugin: 'com.android.library'
-apply plugin: 'maven-publish'
+plugins {
+  id 'com.android.library'
+  id 'maven-publish'
+}
 
 android {
   namespace = "io.techery.progresshint"
-  compileSdkVersion rootProject.ext.compileSdkVersion
+  compileSdk rootProject.ext.compileSdkVersion
 
   defaultConfig {
     minSdkVersion rootProject.ext.minSdkVersion

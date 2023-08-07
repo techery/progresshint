@@ -1,8 +1,10 @@
-apply plugin: 'com.android.application'
+plugins {
+  id 'com.android.application'
+}
 
 android {
   namespace = "com.example.progresshint"
-  compileSdkVersion rootProject.ext.compileSdkVersion
+  compileSdk rootProject.ext.compileSdkVersion
 
   defaultConfig {
     minSdkVersion rootProject.ext.minSdkVersion
@@ -12,10 +14,6 @@ android {
     versionCode 1
     versionName "1.0"
   }
-}
-
-repositories {
-  maven { url 'https://jitpack.io' }
 }
 
 dependencies {
