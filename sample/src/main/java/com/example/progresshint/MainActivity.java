@@ -47,16 +47,14 @@ public class MainActivity extends AppCompatActivity {
 
   @Override public boolean onOptionsItemSelected(MenuItem item) {
     int style = POPUP_FIXED;
-    switch (item.getItemId()) {
-      case R.id.action_fixed:
-        style = POPUP_FIXED;
-        break;
-      case R.id.action_follow:
-        style = POPUP_FOLLOW;
-        break;
-      case R.id.action_open_scroll:
-        startActivity(new Intent(this, ScrollActivity.class));
-        return true;
+    int itemId = item.getItemId();
+    if (itemId == R.id.action_fixed) {
+      style = POPUP_FIXED;
+    } else if (itemId == R.id.action_follow) {
+      style = POPUP_FOLLOW;
+    } else if (itemId == R.id.action_open_scroll) {
+      startActivity(new Intent(this, ScrollActivity.class));
+      return true;
     }
     for (SeekBarHintDelegateHolder seekBar : seekBars) {
       seekBar.getHintDelegate().setPopupStyle(style);
