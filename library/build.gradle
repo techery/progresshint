@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'maven-publish'
 
 android {
   namespace = "io.techery.progresshint"
@@ -7,6 +8,27 @@ android {
   defaultConfig {
     minSdkVersion rootProject.ext.minSdkVersion
     targetSdkVersion rootProject.ext.targetSdkVersion
+    aarMetadata {
+      minCompileSdk = rootProject.ext.minSdkVersion
+    }
+  }
+  publishing {
+    singleVariant('release') {
+      withSourcesJar()
+    }
+  }
+}
+
+publishing {
+  publications {
+    release(MavenPublication) {
+      groupId = 'io.techery.progresshint'
+      artifactId = 'library'
+
+      afterEvaluate {
+        from components.release
+      }
+    }
   }
 }
 
